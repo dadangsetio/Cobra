@@ -59,7 +59,6 @@ public class Login extends AppCompatActivity {
 
         if(username.trim().length() >0 && password.trim().length() > 0){
             if(CheckConnectifity()){
-                Toast.makeText(getApplicationContext(), username + password, Toast.LENGTH_SHORT).show();
                 Login(username, password);
             }else{
                 Toast.makeText(this, "Check your Connection!!", Toast.LENGTH_SHORT).show();
@@ -89,19 +88,18 @@ public class Login extends AppCompatActivity {
                 String value = response.body().getValue();
                 String message = response.body().getMessage();
                 progressDialog.dismiss();
-                // menyimpan login ke session
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(session_status, true);
-                editor.putString(TAG_USERNAME, user);
-                editor.commit();
-
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                intent.putExtra(TAG_USERNAME, username);
-                finish();
-                startActivity(intent);
-
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                 if(value.equals("1")){
+                    // menyimpan login ke session
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean(session_status, true);
+                    editor.putString(TAG_USERNAME, user);
+                    editor.commit();
 
+                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    intent.putExtra(TAG_USERNAME, username);
+                    finish();
+                    startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                 }
