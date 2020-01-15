@@ -45,4 +45,12 @@ public interface DatabaseAPI {
             @Field("jumlah") int jumlah,
             @Field("satuan") String satuan
     );
+
+    @FormUrlEncoded
+    @POST("/api/stock_out.php")
+    Call<Stock> StockOut(
+            @Field("nama") String nama,
+            @Field("jumlah") int jumlah,
+            @Field("satuan") String satuan
+    );
 }

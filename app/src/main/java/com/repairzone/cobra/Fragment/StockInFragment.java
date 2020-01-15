@@ -141,7 +141,6 @@ public class StockInFragment extends Fragment {
                 lv_item.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                         View jml_dialog = getLayoutInflater().inflate(R.layout.dialog_jml, null);
                         EditText ed_jml = jml_dialog.findViewById(R.id.ed_juml);
                         ed_jml.setSingleLine(true);
@@ -153,7 +152,7 @@ public class StockInFragment extends Fragment {
                                     public void onClick(DialogInterface dialogInterface, int x) {
                                         String a = ed_jml.getText().toString();
                                         if(!a.isEmpty()){
-                                            tx_item.setText(itemList.get(i).getNama());
+                                            tx_item.setText(itemList.get(i).getNama()+" : "+a);
                                             choose.add(new Stock(
                                                     itemList.get(i).getNama(),
                                                     itemList.get(i).getSatuan(),
