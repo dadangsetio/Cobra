@@ -1,7 +1,5 @@
 package com.repairzone.cobra;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +7,13 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.repairzone.cobra.API.DatabaseAPI;
+import com.repairzone.cobra.Fragment.RegisterFragment;
 import com.repairzone.cobra.Object.Value;
 
 import butterknife.BindView;
@@ -68,7 +68,7 @@ public class Login extends AppCompatActivity {
         }
     }
     public void Register(View view){
-        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new RegisterFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, new RegisterFragment()).addToBackStack("register").commit();
     }
 
     public void Login(final String user, String pass){
@@ -94,7 +94,7 @@ public class Login extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean(session_status, true);
                     editor.putString(TAG_USERNAME, user);
-                    editor.commit();
+                    editor.apply();
 
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     intent.putExtra(TAG_USERNAME, username);
@@ -114,12 +114,15 @@ public class Login extends AppCompatActivity {
     }
 
     public boolean CheckConnectifity(){
-        if (connectivityManager.getActiveNetworkInfo() != null
+        return connectivityManager.getActiveNetworkInfo() != null
                 && connectivityManager.getActiveNetworkInfo().isAvailable()
-                && connectivityManager.getActiveNetworkInfo().isConnected()) {
-            return true;
+                && connectivityManager.getActiveNetworkInfo().isConnected();
+    }
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
         } else {
-            return false;
+            super.onBackPressed();
         }
     }
 }

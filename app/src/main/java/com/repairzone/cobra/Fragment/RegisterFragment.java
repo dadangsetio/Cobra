@@ -1,11 +1,8 @@
-package com.repairzone.cobra;
+package com.repairzone.cobra.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +11,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.repairzone.cobra.API.DatabaseAPI;
+import com.repairzone.cobra.Configuration;
+import com.repairzone.cobra.Login;
 import com.repairzone.cobra.Object.Value;
+import com.repairzone.cobra.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
