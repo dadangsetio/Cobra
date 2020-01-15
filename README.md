@@ -8,9 +8,11 @@ Cobra is a startup application for warehouse management. This application is dev
 
 # New Features!
 
+  - Login and Register
   - Adding feature add new item and new stock
   - Stock in
-  - View Stock 
+  - View Stock
+  - Stock Out
 
 ### Tech
 
